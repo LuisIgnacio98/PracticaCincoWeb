@@ -1,0 +1,35 @@
+plugins {
+    id 'java'
+    id 'application'
+    id 'com.github.johnrengelman.shadow' version '5.2.0'
+}
+
+group 'org.example'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility= 1.8
+
+mainClassName= 'edu.pucmm.practica2.Main'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
+    compile 'io.javalin:javalin:3.8.0'
+    compile "io.javalin:javalin-openapi:3.9.1"
+    compile "org.slf4j:slf4j-simple:1.7.21"
+    compile "org.freemarker:freemarker:2.3.30"
+}
+
+shadowJar{
+    archiveBaseName = 'app'
+    archiveClassifier = ''
+    archiveVersion = ''
+}
+
+task stage{
+    dependsOn shadowJar
+}
